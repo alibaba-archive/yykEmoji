@@ -7,13 +7,14 @@ import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.tb.emoji.Emoji;
-import com.tb.emoji.EmojiUtil;
-import com.tb.emoji.FaceFragment;
+
+import com.sqk.emojirelease.Emoji;
+import com.sqk.emojirelease.EmojiUtil;
+import com.sqk.emojirelease.FaceFragment;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements FaceFragment.OnEmojiClickListener{
+public class MainActivity extends AppCompatActivity implements FaceFragment.OnEmojiClickListener {
     TextView textView;
     EditText editText;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements FaceFragment.OnEm
         textView = (TextView) findViewById(R.id.textview);
         editText = (EditText) findViewById(R.id.edit_text);
         FaceFragment faceFragment = FaceFragment.Instance();
-        getSupportFragmentManager().beginTransaction().add(R.id.Container,faceFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.Container, faceFragment).commit();
     }
 
 
