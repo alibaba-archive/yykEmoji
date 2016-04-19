@@ -12,6 +12,6 @@ dependencies {
     compile 'com.android.support:support-v4:21.1.1'
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.google.code.gson:gson:2.4'
 }
 
