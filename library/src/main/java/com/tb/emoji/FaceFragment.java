@@ -59,19 +59,22 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         emojiList = EmojiUtil.getEmojiList();
         try {
             if (recentManager.getCollection(RecentEmojiManager.PREFERENCE_NAME) != null) {
                 recentlyEmojiList = (ArrayList<Emoji>) recentManager.getCollection(RecentEmojiManager.PREFERENCE_NAME);
-            } else {
-                recentlyEmojiList = new ArrayList<>();
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        super.onCreate(savedInstanceState);
+
+        if (recentlyEmojiList == null) {
+            recentlyEmojiList = new ArrayList<>();
+        }
     }
 
     @Override
@@ -208,7 +211,7 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
     }
 
     private void insertToRecentList(Emoji emoji) {
-        if (emoji != null) {
+        if (emoji != null && recentlyEmojiList != null) {
             if (recentlyEmojiList.contains(emoji)) {
                 //如果已经有该表情，就把该表情放到第一个位置
                 int index = recentlyEmojiList.indexOf(emoji);
