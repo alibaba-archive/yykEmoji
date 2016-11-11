@@ -42,6 +42,8 @@ public class EmojiUtil {
 
 
     public static final int[] EmojiResArray = {
+            R.drawable.d_erha,
+            R.drawable.d_tanshou,
             R.drawable.d_aini,
             R.drawable.d_aoteman,
             R.drawable.d_baibai,
@@ -146,6 +148,8 @@ public class EmojiUtil {
     };
 
     public static final int[] EmojiContentResArray = {
+            R.string.emoji_erha,
+            R.string.emoji_tanshou,
             R.string.emoji_aini,
             R.string.emoji_aoteman,
             R.string.emoji_baibai,
