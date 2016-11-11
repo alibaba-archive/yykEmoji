@@ -6,7 +6,7 @@ package com.sqk.emojirelease;
 public class EmojiContentList {
     public static final String[][] EmojiTextArray = {
             {"[二哈]", "[erha]"},
-            {"[摊手]"},
+            {"[摊手]", "[so]"},
             {"[爱你]", "[love]"},
             {"[奥特曼]", "[Altman]"},
             {"[拜拜]", "[bye]"},
