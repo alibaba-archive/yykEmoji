@@ -19,11 +19,9 @@ public class RecentEmojiManager {
     public static final String PREFERENCE_NAME = "recentFace";//"preference";
 
     private SharedPreferences mPreferences;
-    private SharedPreferences.Editor mEditor;
 
     private RecentEmojiManager(Context context) {
         mPreferences = context.getSharedPreferences(RecentEmojiManager.PREFERENCE_NAME, Context.MODE_PRIVATE);
-        mEditor = mPreferences.edit();
     }
 
     public static RecentEmojiManager make(Context context) {
@@ -36,7 +34,7 @@ public class RecentEmojiManager {
     }
 
     public RecentEmojiManager putString(String key, String value) {
-        mEditor.putString(key, value).apply();
+        mPreferences.edit().putString(key, value).apply();
         return this;
     }
 

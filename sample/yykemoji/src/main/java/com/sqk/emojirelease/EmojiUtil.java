@@ -77,7 +77,7 @@ public class EmojiUtil {
             R.drawable.d_nanhaier,
             R.drawable.d_nu,
             R.drawable.d_numa,
-            R.drawable.d_numa,
+            R.drawable.d_nvhaier,
             R.drawable.d_qian,
             R.drawable.d_qinqin,
             R.drawable.d_shayan,
