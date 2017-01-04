@@ -3,6 +3,7 @@ package com.sqk.emojirelease;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -41,10 +42,15 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
     private int rows = 3;
 
     private OnEmojiClickListener listener;
+    private OnAttachListener attachListener;
     private RecentEmojiManager recentManager;
 
     public void setListener(OnEmojiClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setAttachListener(OnAttachListener listener) {
+        this.attachListener = listener;
     }
 
     @Override
@@ -236,6 +242,9 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        if(attachListener != null){
+            attachListener.onClose();
+        }
     }
 
 
@@ -327,5 +336,17 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
         void onEmojiDelete();
 
         void onEmojiClick(Emoji emoji);
+    }
+    public interface OnAttachListener {
+        void onOpen();
+
+        void onClose();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        if (attachListener != null) {
+            attachListener.onOpen();
+        }
     }
 }
