@@ -31,5 +31,23 @@
         android:layout_below="@+id/textview"
         android:layout_marginTop="20dp"
         android:textColor="#383838"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_text">
+
+        <Button
+            android:id="@+id/open"
+            android:text="open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/close"
+            android:text="close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>
