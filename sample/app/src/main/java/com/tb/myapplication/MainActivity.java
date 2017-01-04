@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.sqk.emojirelease.Emoji;
@@ -16,11 +14,9 @@ import com.sqk.emojirelease.FaceFragment;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements FaceFragment.OnEmojiClickListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements FaceFragment.OnEmojiClickListener {
     TextView textView;
     EditText editText;
-
-    FaceFragment faceFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +24,7 @@ public class MainActivity extends AppCompatActivity implements FaceFragment.OnEm
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.textview);
         editText = (EditText) findViewById(R.id.edit_text);
-        findViewById(R.id.open).setOnClickListener(this);
-        findViewById(R.id.close).setOnClickListener(this);
-        faceFragment = FaceFragment.Instance();
-        faceFragment.setAttachListener(new FaceFragment.OnAttachListener() {
-            @Override
-            public void onOpen() {
-                Toast.makeText(MainActivity.this,"attach",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onClose() {
-                Toast.makeText(MainActivity.this,"detach",Toast.LENGTH_SHORT).show();
-            }
-        });
+        FaceFragment faceFragment = FaceFragment.Instance();
         getSupportFragmentManager().beginTransaction().add(R.id.Container, faceFragment).commit();
     }
 
@@ -93,19 +76,5 @@ public class MainActivity extends AppCompatActivity implements FaceFragment.OnEm
             }
         }
         displayTextView();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.open:
-                getSupportFragmentManager().beginTransaction().attach(faceFragment).commit();
-                break;
-            case R.id.close:
-                getSupportFragmentManager().beginTransaction().detach(faceFragment).commit();
-                break;
-            default:
-                break;
-        }
     }
 }
