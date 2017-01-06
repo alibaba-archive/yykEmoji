@@ -3,6 +3,7 @@ package com.sqk.emojirelease;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -41,10 +42,15 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
     private int rows = 3;
 
     private OnEmojiClickListener listener;
+    private OnAttachListener attachListener;
     private RecentEmojiManager recentManager;
 
     public void setListener(OnEmojiClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setAttachListener(OnAttachListener listener) {
+        this.attachListener = listener;
     }
 
     @Override
@@ -129,25 +135,25 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-            if(v.getId() == R.id.face_first_set){
-                if (faceIndicator.getVisibility() == View.GONE) {
-                    faceIndicator.setVisibility(View.VISIBLE);
-                }
-                if (!faceFirstSetTv.isSelected()) {
-                    faceFirstSetTv.setSelected(true);
-                    initViewPager(emojiList);
-                }
-                faceRecentTv.setSelected(false);
-            }else if (v.getId() == R.id.face_recent){
-                if (faceIndicator.getVisibility() == View.VISIBLE) {
-                    faceIndicator.setVisibility(View.GONE);
-                }
-                if (!faceRecentTv.isSelected()) {
-                    faceRecentTv.setSelected(true);
-                    initViewPager(recentlyEmojiList);
-                }
-                faceFirstSetTv.setSelected(false);
+        if (v.getId() == R.id.face_first_set) {
+            if (faceIndicator.getVisibility() == View.GONE) {
+                faceIndicator.setVisibility(View.VISIBLE);
             }
+            if (!faceFirstSetTv.isSelected()) {
+                faceFirstSetTv.setSelected(true);
+                initViewPager(emojiList);
+            }
+            faceRecentTv.setSelected(false);
+        } else if (v.getId() == R.id.face_recent) {
+            if (faceIndicator.getVisibility() == View.VISIBLE) {
+                faceIndicator.setVisibility(View.GONE);
+            }
+            if (!faceRecentTv.isSelected()) {
+                faceRecentTv.setSelected(true);
+                initViewPager(recentlyEmojiList);
+            }
+            faceFirstSetTv.setSelected(false);
+        }
 
     }
 
@@ -159,7 +165,7 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
     private int getPagerCount(ArrayList<Emoji> list) {
         int count = list.size();
         return count % (columns * rows - 1) == 0 ? count / (columns * rows - 1)
-                : count / (columns * rows - 1) + 1;
+            : count / (columns * rows - 1) + 1;
     }
 
     private View getViewPagerItem(int position, ArrayList<Emoji> list) {
@@ -171,10 +177,10 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
          * */
         final List<Emoji> subList = new ArrayList<>();
         subList.addAll(list.subList(position * (columns * rows - 1),
-                (columns * rows - 1) * (position + 1) > list
-                        .size() ? list.size() : (columns
-                        * rows - 1)
-                        * (position + 1)));
+            (columns * rows - 1) * (position + 1) > list
+                .size() ? list.size() : (columns
+                * rows - 1)
+                * (position + 1)));
         /**
          * 末尾添加删除图标
          * */
@@ -194,12 +200,12 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == columns * rows - 1) {
-                    if(listener != null){
+                    if (listener != null) {
                         listener.onEmojiDelete();
                     }
                     return;
                 }
-                if(listener != null){
+                if (listener != null) {
                     listener.onEmojiClick(subList.get(position));
                 }
                 insertToRecentList(subList.get(position));
@@ -235,6 +241,9 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
             recentManager.putCollection(RecentEmojiManager.PREFERENCE_NAME, recentlyEmojiList);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(attachListener != null){
+            attachListener.onClose();
         }
     }
 
@@ -280,8 +289,8 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
                 holder = (ViewHolder) convertView.getTag();
             }
             if (list.get(position) != null) {
-                    holder.iv.setImageBitmap(EmojiUtil.decodeSampledBitmapFromResource(getActivity().getResources(), list.get(position).getImageUri(),
-                            EmojiUtil.dip2px(getActivity(), 32), EmojiUtil.dip2px(getActivity(), 32)));
+                holder.iv.setImageBitmap(EmojiUtil.decodeSampledBitmapFromResource(getActivity().getResources(), list.get(position).getImageUri(),
+                    EmojiUtil.dip2px(getActivity(), 32), EmojiUtil.dip2px(getActivity(), 32)));
             }
             return convertView;
         }
@@ -327,5 +336,18 @@ public class FaceFragment extends Fragment implements View.OnClickListener {
         void onEmojiDelete();
 
         void onEmojiClick(Emoji emoji);
+    }
+
+    public interface OnAttachListener {
+        void onOpen();
+
+        void onClose();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        if (attachListener != null) {
+            attachListener.onOpen();
+        }
     }
 }
