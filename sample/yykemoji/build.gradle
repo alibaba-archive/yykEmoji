@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 24
@@ -7,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 4
-        versionName "2.1"
+        versionCode 5
+        versionName "2.1.2"
     }
     buildTypes {
         release {
@@ -22,4 +23,20 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.google.code.gson:gson:2.4'
+}
+
+def mArtifact = project.name
+def mVersion = android.defaultConfig.versionName
+// install to local repository
+task install(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    configuration = configurations['archives']
+    repositories.mavenDeployer {
+        repository url: repositories.mavenLocal().url
+        pom.project {
+            groupId 'com.teambition'
+            artifactId mArtifact
+            version mVersion + '-SNAPSHOT'
+        }
+    }
 }
