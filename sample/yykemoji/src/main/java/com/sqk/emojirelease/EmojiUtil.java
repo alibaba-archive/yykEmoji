@@ -145,6 +145,15 @@ public class EmojiUtil {
         R.drawable.w_xianhua,
         R.drawable.w_xiayu,
         R.drawable.w_yueliang,
+        R.drawable.d_yunbei,
+        R.drawable.d_bingbujiandan,
+        R.drawable.d_baobao,
+        R.drawable.d_guile,
+        R.drawable.d_chigua,
+        R.drawable.d_feijie,
+        R.drawable.d_kulou,
+        R.drawable.dorachijing,
+        R.drawable.dorahan,
     };
 
     public static final int[] EmojiContentResArray = {
@@ -251,6 +260,15 @@ public class EmojiUtil {
         R.string.emoji_xianhua,
         R.string.emoji_xiayu,
         R.string.emoji_yueliang,
+        R.string.emoji_d_yunbei,
+        R.string.emoji_d_bingbujiandan,
+        R.string.emoji_d_baobao,
+        R.string.emoji_d_guile,
+        R.string.emoji_d_chigua,
+        R.string.emoji_d_feijie,
+        R.string.emoji_d_kulou,
+        R.string.emoji_dorachijing,
+        R.string.emoji_dorahan,
     };
 
     public static int calculateInSampleSize(BitmapFactory.Options options,

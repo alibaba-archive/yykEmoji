@@ -106,5 +106,15 @@
     <string name="emoji_xianhua">[鲜花]</string>
     <string name="emoji_xiayu">[下雨]</string>
     <string name="emoji_yueliang">[月亮]</string>
+    <string name="emoji_d_yunbei">[允悲]</string>
+    <string name="emoji_d_bingbujiandan">[并不简单]</string>
+    <string name="emoji_d_baobao">[抱抱]</string>
+    <string name="emoji_d_guile">[跪了]</string>
+    <string name="emoji_d_chigua">[吃瓜]</string>
+    <string name="emoji_d_feijie">[费解]</string>
+    <string name="emoji_d_kulou">[骷髅]</string>
+    <string name="emoji_dorachijing">[哆啦A梦吃惊]</string>
+    <string name="emoji_dorahan">[哆啦A梦汗]</string>
+
 
 </resources>
