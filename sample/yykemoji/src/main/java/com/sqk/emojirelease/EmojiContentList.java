@@ -108,5 +108,15 @@ public class EmojiContentList {
             {"[鲜花]", "[sunflower]"},
             {"[下雨]", "[rain]"},
             {"[月亮]", "[crescent_moon]"},
+
+            {"[允悲]", "[hold_face]"},
+            {"[并不简单]", "[not_simple]"},
+            {"[抱抱]", "[hug]"},
+            {"[跪了]", "[stunned]"},
+            {"[吃瓜]", "[eating_melon]"},
+            {"[费解]", "[inexplicability]"},
+            {"[骷髅]", "[skull]"},
+            {"[哆啦A梦吃惊]", "[dora_surprised]"},
+            {"[哆啦A梦汗]", "[dora_speechless]"},
     };
 }
