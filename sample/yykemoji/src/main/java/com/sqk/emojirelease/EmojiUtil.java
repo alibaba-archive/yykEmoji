@@ -159,9 +159,9 @@ public class EmojiUtil {
     public static final int[] EmojiContentResArray = {
         R.string.emoji_weixiao,
         R.string.emoji_xixi,
-        R.string.emoji_haha,
+        R.string.emoji_haha_zh,
         R.string.emoji_aini,
-        R.string.emoji_bishi,
+        R.string.emoji_wabi,
         R.string.emoji_chijing,
         R.string.emoji_yun,
         R.string.emoji_lei,
